@@ -1,0 +1,14 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "forestproject-michaelmurrayiv-main/lib/apiguardian-api-1.1.0.jar",
+        "forestproject-michaelmurrayiv-main/lib/junit-jupiter-5.7.0.jar",
+        "forestproject-michaelmurrayiv-main/lib/junit-jupiter-api-5.7.0.jar",
+        "forestproject-michaelmurrayiv-main/lib/junit-jupiter-engine-5.7.0.jar",
+        "forestproject-michaelmurrayiv-main/lib/junit-jupiter-params-5.7.0.jar",
+        "forestproject-michaelmurrayiv-main/lib/junit-platform-commons-1.7.0.jar",
+        "forestproject-michaelmurrayiv-main/lib/junit-platform-engine-1.7.0.jar",
+        "forestproject-michaelmurrayiv-main/lib/opentest4j-1.2.0.jar",
+        "forestproject-michaelmurrayiv-main/lib/processing-experimental.jar"
+    ]
+}
