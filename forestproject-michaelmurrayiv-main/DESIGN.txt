@@ -1,0 +1,3 @@
+getCurrentImage: An instance method called getCurrentImage was placed in both entity and background,
+                 corresponding to the two object types the method is for.
+The functions left in Functions.java were left there because they do not contain input parameters of any classes in this project.
