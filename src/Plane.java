@@ -12,12 +12,6 @@ public class Plane extends Person {
         super(id, position, images, actionPeriod, animationPeriod);
     }
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        List<Class> myList = new ArrayList<>();
-        myList.add(Stump.class);
-        Optional<Entity> fairyTarget = world.findNearest(getPosition(), myList);
-
-        if (fairyTarget.isPresent()) {
-            Point tgtPos = fairyTarget.get().getPosition();
 
             if (moveTo(world, fairyTarget.get(), scheduler)) {
 
@@ -25,14 +19,16 @@ public class Plane extends Person {
                 world.addEntity(sapling);
                 ((HasAnimation)sapling).scheduleActions(scheduler, world, imageStore);
             }
-        }
+        
 
         scheduler.scheduleEvent(this, createActivityAction(world, imageStore), getActionPeriod());
     }
 
-    public Point findTargetPosition()
+    private Point findTargetPosition()
     {
         //get other side of the world
+        
+
     }
     public Point nextPosition(WorldModel world, Point destPos) {
         PathingStrategy strat = new AStarPathingStrategy();
