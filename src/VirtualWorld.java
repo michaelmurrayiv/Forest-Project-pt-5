@@ -35,6 +35,8 @@ public final class VirtualWorld extends PApplet {
     private WorldView view;
     private EventScheduler scheduler;
 
+    private int timesPressed = 0;
+
     public void settings() {
         size(VIEW_WIDTH, VIEW_HEIGHT);
     }
@@ -76,11 +78,19 @@ public final class VirtualWorld extends PApplet {
             System.out.println(entity.getId() + ": " + entity.getClass());
         }
 
-//        Plane plane = new Plane("plane", new Point(0, pressed.y), imageStore.getImageList("plane"), 1000, 1000);
-//        world.addEntity(plane);
-        Tombstone tombstone = new Tombstone("tombstone", new Point(0, pressed.y), imageStore.getImageList("tombstone"),0);
-        world.addEntity(tombstone);
-        ((HasAnimation)tombstone).scheduleActions(scheduler, world, imageStore);
+        if (timesPressed % 2 == 0)
+        {
+            Plane plane = new Plane("plane", new Point(0, pressed.y), imageStore.getImageList("plane"), 1000, 1000);
+            world.addEntity(plane);
+            ((HasAnimation)plane).scheduleActions(scheduler, world, imageStore);
+        }
+        else
+        {
+            Tombstone tombstone = new Tombstone("tombstone", new Point(0, pressed.y), imageStore.getImageList("tombstone"),0);
+            world.addEntity(tombstone);
+            ((HasAnimation)tombstone).scheduleActions(scheduler, world, imageStore);
+        }
+        timesPressed += 1;
     }
 
     public void scheduleActions(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
