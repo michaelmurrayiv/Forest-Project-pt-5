@@ -6,18 +6,16 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class Plane extends Person {
+public class Plane extends Living {
 //TODO: Fix target to move across screen. Get target
     public Plane(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
     }
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
 
-            if (moveTo(world, fairyTarget.get(), scheduler)) {
+            if (moveTo(world, findTargetPosition(), scheduler)) {
 
-                Entity sapling = new Sapling(WorldModel.getSaplingKey() + "_" + ((Stump)fairyTarget.get()).getId(), tgtPos, imageStore.getImageList(WorldModel.getSaplingKey()), 1.000, 1.000,0);
-                world.addEntity(sapling);
-                ((HasAnimation)sapling).scheduleActions(scheduler, world, imageStore);
+                world.removeEntity(this, scheduler);
             }
         
 
@@ -27,16 +25,17 @@ public class Plane extends Person {
     private Point findTargetPosition()
     {
         //get other side of the world
+        Point target = new Point(40,this.getPosition().getY());
+        return target;
         
-
     }
     public Point nextPosition(WorldModel world, Point destPos) {
-        PathingStrategy strat = new AStarPathingStrategy();
-     //   PathingStrategy strat = new SingleStepPathingStrategy();
+        // PathingStrategy strat = new AStarPathingStrategy();
+        PathingStrategy strat = new SingleStepPathingStrategy();
         List<Point> path = strat.computePath(
                 this.getPosition(),
                 destPos,
-                (p) -> (!(world.isOccupied(p))) && world.withinBounds(p),
+                (p) -> world.withinBounds(p),
                 Functions::adjacent,
                 PathingStrategy.CARDINAL_NEIGHBORS
                 );
@@ -45,14 +44,12 @@ public class Plane extends Person {
 
         return path.get(0);
     }
-    public boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler) {
-        if (Functions.adjacent(getPosition(), target.getPosition())) {
-
-            world.removeEntity(target, scheduler);
+    public boolean moveTo(WorldModel world, Point target, EventScheduler scheduler) {
+        if (Functions.adjacent(getPosition(), target)) {
 
             return true;
         } else {
-            Point nextPos = nextPosition(world, target.getPosition());
+            Point nextPos = nextPosition(world, target);
 
             if (!getPosition().equals(nextPos)) {
                 world.moveEntity(scheduler, this, nextPos);

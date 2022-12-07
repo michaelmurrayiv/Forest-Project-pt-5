@@ -80,13 +80,12 @@ public final class VirtualWorld extends PApplet {
 
         if (timesPressed % 2 == 0)
         {
-            Plane plane = new Plane("plane", new Point(0, pressed.y), imageStore.getImageList("plane"), 1000, 1000);
+            Plane plane = new Plane("plane", new Point(0, pressed.y), imageStore.getImageList("plane"), .5, .2);
             world.addEntity(plane);
             ((HasAnimation)plane).scheduleActions(scheduler, world, imageStore);
         }
         else
         {
-            System.out.println("Tombstone");
             Tombstone tombstone = new Tombstone("tombstone", new Point(0, pressed.y), imageStore.getImageList("tombstone"),0);
             world.addEntity(tombstone);
 
