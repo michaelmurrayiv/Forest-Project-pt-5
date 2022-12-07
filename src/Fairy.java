@@ -35,7 +35,7 @@ public class Fairy extends Person {
         List<Point> path = strat.computePath(
                 this.getPosition(),
                 destPos,
-                (p) -> (!(world.isOccupied(p))) && world.withinBounds(p),
+                (p) -> (!(world.isOccupied(p)) || world.getOccupancyCell(p).getClass() == Plane.class) && world.withinBounds(p),
                 Functions::adjacent,
                 PathingStrategy.CARDINAL_NEIGHBORS
                 );

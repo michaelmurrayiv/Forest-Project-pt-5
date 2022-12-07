@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Bomb extends Person {
-
+//TODO: two blocks up, down, right, left, and one diagonal. Percent chance that a block gets hit. If it hits water, turn to stone, else turn to fire. 
     public Bomb(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
     }
