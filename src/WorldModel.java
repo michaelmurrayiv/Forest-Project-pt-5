@@ -48,6 +48,8 @@ public final class WorldModel {
     private static final int TREE_ACTION_PERIOD = 1;
     private static final int TREE_HEALTH = 2;
     private static final int TREE_NUM_PROPERTIES = 3;
+    private static final String TOMBSTONE_KEY = "tombstone";
+    private static final int TOMBSTONE_NUM_PROPERTIES = 0;
     public WorldModel() {
 
     }
@@ -132,6 +134,14 @@ public final class WorldModel {
             entity.tryAddEntity(this);
         }else{
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", HOUSE_KEY, HOUSE_NUM_PROPERTIES));
+        }
+    }
+    private void parseTombstone(String[] properties, Point pt, String id, ImageStore imageStore) {
+        if (properties.length == TOMBSTONE_NUM_PROPERTIES) {
+            Entity entity = new Tombstone(id, pt, imageStore.getImageList(TOMBSTONE_KEY), 0);
+            entity.tryAddEntity(this);
+        }else{
+            throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", TOMBSTONE_KEY, TOMBSTONE_NUM_PROPERTIES));
         }
     }
     private void parseStump(String[] properties, Point pt, String id, ImageStore imageStore) {
@@ -219,6 +229,8 @@ public final class WorldModel {
                 case TREE_KEY -> parseTree(properties, pt, id, imageStore);
                 case SAPLING_KEY -> parseSapling(properties, pt, id, imageStore);
                 case STUMP_KEY -> parseStump(properties, pt, id, imageStore);
+                case TOMBSTONE_KEY -> parseTombstone(properties, pt, id, imageStore);
+
                 default -> throw new IllegalArgumentException("Entity key is unknown");
             }
         }else{

@@ -76,8 +76,10 @@ public final class VirtualWorld extends PApplet {
             System.out.println(entity.getId() + ": " + entity.getClass());
         }
 
-        Plane plane = new Plane("plane", new Point(0, pressed.y), imageStore.getImageList("plane"), 1000, 1000);
-        world.addEntity(plane);
+//        Plane plane = new Plane("plane", new Point(0, pressed.y), imageStore.getImageList("plane"), 1000, 1000);
+//        world.addEntity(plane);
+        Tombstone tombstone = new Tombstone("tombstone", new Point(0, pressed.y), imageStore.getImageList("tombstone"),0);
+        world.addEntity(tombstone);
     }
 
     public void scheduleActions(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
