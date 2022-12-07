@@ -85,19 +85,31 @@ public final class VirtualWorld extends PApplet {
 
             int col = pressed.x;
             int row = pressed.y;
-            for (int i = col-1; i <= col+1; i++){
-                for (int j = row-2; j <= row+2; j = j+4) {
+        for (int i = col-6; i <= col-2; i++){
+            for (int j = row-6; j <= row-2; j++) {
+                if ((i == j) || i+1 == j){
                     Point p = new Point(i, j);
                     if (world.withinBounds(p) && !world.isOccupied(p)) {
-                        world.setBackgroundCell(p, new Background("tombstone", imageStore.getImageList("tombstone")));
+                        world.setBackgroundCell(p, new Background("lava", imageStore.getImageList("lava")));
                     }
                 }
             }
+        }
+        for (int i = col+2; i <= col+6; i++){
+            for (int j = row+2; j <= row+6; j++) {
+                if ((i == j) || i-1 == j){
+                    Point p = new Point(i, j);
+                    if (world.withinBounds(p) && !world.isOccupied(p)) {
+                        world.setBackgroundCell(p, new Background("lava", imageStore.getImageList("lava")));
+                    }
+                }
+            }
+        }
         for (int i = col-2; i <= col+2; i++){
             for (int j = row-1; j <= row+1; j++) {
                 Point p = new Point(i, j);
                 if (world.withinBounds(p) && !world.isOccupied(p)) {
-                    world.setBackgroundCell(p, new Background("tombstone", imageStore.getImageList("tombstone")));
+                    world.setBackgroundCell(p, new Background("lava", imageStore.getImageList("lava")));
                 }
             }
         }
