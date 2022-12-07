@@ -80,6 +80,7 @@ public final class VirtualWorld extends PApplet {
 //        world.addEntity(plane);
         Tombstone tombstone = new Tombstone("tombstone", new Point(0, pressed.y), imageStore.getImageList("tombstone"),0);
         world.addEntity(tombstone);
+        ((HasAnimation)tombstone).scheduleActions(scheduler, world, imageStore);
     }
 
     public void scheduleActions(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
