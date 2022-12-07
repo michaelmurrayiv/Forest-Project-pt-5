@@ -52,6 +52,10 @@ public final class WorldModel {
 
     private static final String TOMBSTONE_KEY = "tombstone";
     private static final int TOMBSTONE_NUM_PROPERTIES = 0;
+
+    private static final String FIRE_KEY = "fire";
+    private static final int FIRE_NUM_PROPERTIES = 1;
+
     public WorldModel() {
 
     }
