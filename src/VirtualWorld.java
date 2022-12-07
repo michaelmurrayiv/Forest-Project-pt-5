@@ -86,9 +86,10 @@ public final class VirtualWorld extends PApplet {
         }
         else
         {
+            System.out.println("Tombstone");
             Tombstone tombstone = new Tombstone("tombstone", new Point(0, pressed.y), imageStore.getImageList("tombstone"),0);
             world.addEntity(tombstone);
-            ((HasAnimation)tombstone).scheduleActions(scheduler, world, imageStore);
+
         }
         timesPressed += 1;
     }
