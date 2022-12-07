@@ -9,5 +9,7 @@ public abstract class Person extends Living{
     }
     abstract boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler);
 
+
+
     abstract Point nextPosition(WorldModel world, Point destPos);
 }
