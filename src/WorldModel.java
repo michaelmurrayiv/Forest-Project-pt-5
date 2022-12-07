@@ -276,17 +276,7 @@ public final class WorldModel {
         if (withinBounds(pos) && !pos.equals(oldPos)) {
             setOccupancyCell(oldPos, null);
             Optional<Entity> occupant = getOccupant(pos);
-            if (entity.getClass() != Plane.class)
-            {
-                //TODO : fix fairies and dudes removing planes
-                occupant.ifPresent(target -> {
-                    if (target.getClass() != Plane.class)
-                    {
-                        removeEntity(target, scheduler);
-                    }
-                }
-                );
-            }
+            occupant.ifPresent(target -> removeEntity(target, scheduler));
             setOccupancyCell(pos, entity);
             entity.setPosition(pos);
         }

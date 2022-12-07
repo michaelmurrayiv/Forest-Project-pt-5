@@ -10,7 +10,7 @@ Comment:
       KEY ID X_POSITION Y_POSITION [rest]
       where the values in rest depend on the key.
       Here is the table to describe those values:
-        dude [id] [x] [y] ACTION_PERIOD ANIMATION_PERIOD LIMIT
+        dude [id] [x] [y] ACTION_PERIOD ANIMATION_PERIOD LIMIT HEALTH
         tree [id] [x] [y] ANIMATION_PERIOD ACTION_PERIOD HEALTH
         fairy [id] [x] [y] ANIMATION_PERIOD ACTION_PERIOD
         obstacle [id] [x] [y] ANIMATION_PERIOD
@@ -93,7 +93,7 @@ obstacle  11 07 1.197
 obstacle  05 09 1.154
 obstacle  20 12 1.135
 obstacle  34 21 1.107
-    dude  22 26 0.787 0.180 04
+    dude  22 26 0.787 0.180 04 4
 obstacle  29 20 1.001
     tree  07 00 0.522 1.352 1
     tree  03 00 0.185 1.387 1
@@ -124,7 +124,7 @@ obstacle  31 20 1.140
 obstacle  24 17 1.083
 obstacle  25 19 1.072
 obstacle  21 13 1.006
-    dude  35 26 0.784 0.180 04
+    dude  35 26 0.784 0.180 04 4
     tree  19 01 0.300 1.154 1
     tree  08 01 0.106 1.269 1
 obstacle  18 12 1.190
@@ -184,7 +184,7 @@ obstacle  25 18 1.125
 obstacle  22 17 1.052
     tree  23 04 0.419 1.128 2
 obstacle  01 08 1.041
-    dude  04 03 0.848 0.180 03
+    dude  04 03 0.848 0.180 03 4
 obstacle  19 11 1.071
     tree  17 03 0.061 1.050 1
 obstacle  01 09 1.112
@@ -202,7 +202,7 @@ obstacle  03 09 1.199
 obstacle  20 14 1.140
     tree  24 04 0.182 1.027 2
     tree  36 27 0.150 1.230 2
-    dude  06 21 0.720 0.180 04
+    dude  06 21 0.720 0.180 04 4
     tree  26 09 0.594 1.345 1
 obstacle  08 07 1.101
     tree  11 14 0.173 1.274 1

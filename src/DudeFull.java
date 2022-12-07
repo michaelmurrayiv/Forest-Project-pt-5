@@ -4,8 +4,8 @@ import java.util.*;
 
 public class DudeFull extends Dude {
 
-    public DudeFull(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod,int resourceLimit){
-        super(id, position, images, actionPeriod, animationPeriod, resourceLimit);
+    public DudeFull(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod,int resourceLimit, int health){
+        super(id, position, images, actionPeriod, animationPeriod, resourceLimit, health);
     }
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         List<Class> myList = new ArrayList<>();
@@ -33,7 +33,7 @@ public class DudeFull extends Dude {
         }
     }
     public boolean transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        Entity dude = new DudeNotFull(getId(), getPosition(), getImages(), getActionPeriod(), getAnimationPeriod(), getResourceLimit());
+        Entity dude = new DudeNotFull(getId(), getPosition(), getImages(), getActionPeriod(), getAnimationPeriod(), getResourceLimit(), getHealth());
         world.removeEntity(this, scheduler);
 
         world.addEntity(dude);

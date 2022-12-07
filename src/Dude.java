@@ -6,11 +6,13 @@ import java.util.Optional;
 public abstract class Dude extends Person {
 
     private final int resourceLimit;
+    private int health;
 
 
     public Dude(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int resourceLimit) {
         super(id, position, images,  actionPeriod, animationPeriod);
         this.resourceLimit = resourceLimit;
+        this.health = health;
     }
 
     public Point nextPosition(WorldModel world, Point destPos) {
@@ -45,5 +47,16 @@ public abstract class Dude extends Person {
 
     public int getResourceLimit(){return resourceLimit;}
 
+    public void decreaseHealth(){
+        this.health--;
+    }
+    public int getHealth(){return health;}
+    public boolean transformZombie(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+        Entity zombie = new Zombie("zombie", getPosition(), imageStore.getImageList("plane"), 1, .2);
+        world.removeEntity(this, scheduler);
 
+        world.addEntity(zombie);
+        ((HasAnimation)zombie).scheduleActions(scheduler, world, imageStore);
+        return true;
+    }
 }
