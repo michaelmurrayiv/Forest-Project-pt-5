@@ -8,11 +8,10 @@ import java.util.stream.Stream;
 
 public class Bomb extends Person {
 //TODO: two blocks up, down, right, left, and one diagonal. Percent chance that a block gets hit. If it hits water, turn to stone, else turn to fire. 
-    private int countdown;
+    private int countdown = 13;
     private List<Point> listOfPoints;
     public Bomb(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
-        countdown = 13;
     }
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         countdown --;
