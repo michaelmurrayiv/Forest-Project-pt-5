@@ -4,8 +4,8 @@ import java.util.*;
 
 public class DudeNotFull extends Dude {
     private int resourceCount;
-    public DudeNotFull(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int resourceLimit){
-        super(id, position, images, actionPeriod, animationPeriod, resourceLimit);
+    public DudeNotFull(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int resourceLimit, int health){
+        super(id, position, images, actionPeriod, animationPeriod, resourceLimit, health);
         this.resourceCount = 0;
     }
 
@@ -39,7 +39,7 @@ public class DudeNotFull extends Dude {
     public boolean transformNotFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (resourceCount >= getResourceLimit()) {
 
-            Entity dude = new DudeFull(getId(), getPosition(), getImages(), getActionPeriod(), getAnimationPeriod(), getResourceLimit());
+            Entity dude = new DudeFull(getId(), getPosition(), getImages(), getActionPeriod(), getAnimationPeriod(), getResourceLimit(),getHealth());
             world.removeEntity(this, scheduler);
 
             scheduler.unscheduleAllEvents(this);

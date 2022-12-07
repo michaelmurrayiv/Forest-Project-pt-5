@@ -9,7 +9,7 @@ public abstract class Dude extends Person {
     private int health;
 
 
-    public Dude(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int resourceLimit) {
+    public Dude(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int resourceLimit, int health) {
         super(id, position, images,  actionPeriod, animationPeriod);
         this.resourceLimit = resourceLimit;
         this.health = health;
