@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.random.*;
 
 import processing.core.*;
 
@@ -97,8 +98,9 @@ public final class VirtualWorld extends PApplet {
         possiblePoints.stream()
                 .filter(p -> world.withinBounds(p))
                 .filter(p -> !world.isOccupied(p))
-                .forEach(p -> world.setBackgroundCell(p, new Background("lava", imageStore.getImageList("lava"))))
-;
+                .filter(p -> Math.random() < .75)
+                .forEach(p -> world.setBackgroundCell(p, new Background("lava", imageStore.getImageList("lava"))));
+        
         Zombie zombie = new Zombie("zombie", new Point(pressed.x, pressed.y), imageStore.getImageList("plane"), 1, .2);
         world.addEntity(zombie);
         ((HasAnimation)zombie).scheduleActions(scheduler, world, imageStore);
