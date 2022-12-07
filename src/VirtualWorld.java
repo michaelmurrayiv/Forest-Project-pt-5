@@ -80,52 +80,38 @@ public final class VirtualWorld extends PApplet {
 
 
         //world.setBackgroundCell(pressed, new Background("tombstone", imageStore.getImageList("tombstone")));
-//        if (timesPressed % 2 == 0)
-//        {
+        if (timesPressed % 2 == 0)
+        {
 
-            int col = pressed.x;
-            int row = pressed.y;
-        for (int i = col-6; i <= col-2; i++){
-            for (int j = row-6; j <= row-2; j++) {
-                if ((i == j) || i+1 == j){
-                    Point p = new Point(i, j);
-                    if (world.withinBounds(p) && !world.isOccupied(p)) {
-                        world.setBackgroundCell(p, new Background("lava", imageStore.getImageList("lava")));
-                    }
+        int col = pressed.x;
+        int row = pressed.y;
+
+        List<Point> possiblePoints = new ArrayList<>();
+
+        for (int i = col - 2; i <= col + 2; i++) {
+            for (int j = row - 2; j <= row + 2; j++) {
+                possiblePoints.add(new Point(i, j));
                 }
             }
-        }
-        for (int i = col+2; i <= col+6; i++){
-            for (int j = row+2; j <= row+6; j++) {
-                if ((i == j) || i-1 == j){
-                    Point p = new Point(i, j);
-                    if (world.withinBounds(p) && !world.isOccupied(p)) {
-                        world.setBackgroundCell(p, new Background("lava", imageStore.getImageList("lava")));
-                    }
-                }
-            }
-        }
-        for (int i = col-2; i <= col+2; i++){
-            for (int j = row-1; j <= row+1; j++) {
-                Point p = new Point(i, j);
-                if (world.withinBounds(p) && !world.isOccupied(p)) {
-                    world.setBackgroundCell(p, new Background("lava", imageStore.getImageList("lava")));
-                }
-            }
-        }
+
+        possiblePoints.stream()
+                .filter(p -> world.withinBounds(p))
+                .filter(p -> !world.isOccupied(p))
+                .forEach(p -> world.setBackgroundCell(p, new Background("lava", imageStore.getImageList("lava"))))
+;
         Zombie zombie = new Zombie("zombie", new Point(pressed.x, pressed.y), imageStore.getImageList("plane"), 1, .2);
         world.addEntity(zombie);
         ((HasAnimation)zombie).scheduleActions(scheduler, world, imageStore);
 
 
-//        }
-//        else
-//        {
-//            Bomb bomb = new Bomb("bomb", new Point(pressed.x, pressed.y), imageStore.getImageList("bomb"),.5, .2);
-//            world.addEntity(bomb);
-//            ((HasAnimation)bomb).scheduleActions(scheduler, world, imageStore);
-//        }
-//        timesPressed += 1;
+        }
+        else
+        {
+            Bomb bomb = new Bomb("bomb", new Point(pressed.x, pressed.y), imageStore.getImageList("bomb"),.5, .2);
+            world.addEntity(bomb);
+            ((HasAnimation)bomb).scheduleActions(scheduler, world, imageStore);
+        }
+        timesPressed += 1;
     }
 
     public void scheduleActions(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
