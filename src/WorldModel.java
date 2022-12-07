@@ -33,7 +33,8 @@ public final class WorldModel {
     private static final int DUDE_ACTION_PERIOD = 0;
     private static final int DUDE_ANIMATION_PERIOD = 1;
     private static final int DUDE_LIMIT = 2;
-    private static final int DUDE_NUM_PROPERTIES = 3;
+    private static final int DUDE_HEALTH = 3;
+    private static final int DUDE_NUM_PROPERTIES = 4;
 
     private static final String HOUSE_KEY = "house";
     private static final int HOUSE_NUM_PROPERTIES = 0;
@@ -48,6 +49,7 @@ public final class WorldModel {
     private static final int TREE_ACTION_PERIOD = 1;
     private static final int TREE_HEALTH = 2;
     private static final int TREE_NUM_PROPERTIES = 3;
+
     private static final String TOMBSTONE_KEY = "tombstone";
     private static final int TOMBSTONE_NUM_PROPERTIES = 0;
     public WorldModel() {
@@ -93,7 +95,7 @@ public final class WorldModel {
 
     private void parseDude(String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == DUDE_NUM_PROPERTIES) {
-            Entity entity = new DudeNotFull(id, pt, imageStore.getImageList(DUDE_KEY), Double.parseDouble(properties[DUDE_ACTION_PERIOD]), Double.parseDouble(properties[DUDE_ANIMATION_PERIOD]),  Integer.parseInt(properties[DUDE_LIMIT]));
+            Entity entity = new DudeNotFull(id, pt, imageStore.getImageList(DUDE_KEY), Double.parseDouble(properties[DUDE_ACTION_PERIOD]), Double.parseDouble(properties[DUDE_ANIMATION_PERIOD]),  Integer.parseInt(properties[DUDE_LIMIT]), Integer.parseInt(properties[DUDE_HEALTH]));
             entity.tryAddEntity(this);
         }else{
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", DUDE_KEY, DUDE_NUM_PROPERTIES));
@@ -156,7 +158,7 @@ public final class WorldModel {
         return background[pos.y][pos.x];
     }
 
-    private void setBackgroundCell(Point pos, Background background) {
+    public void setBackgroundCell(Point pos, Background background) {
         this.background[pos.y][pos.x] = background;
     }
     public Optional<Entity> getOccupant(Point pos) {
