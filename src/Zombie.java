@@ -1,29 +1,27 @@
 import processing.core.PImage;
 
-import java.util.*;
-import java.util.function.BiPredicate;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
+import java.lang.annotation.Target;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-public class Fairy extends Person {
+public class Zombie extends Person {
 
-    public Fairy(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
+    public Zombie(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
     }
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         List<Class> myList = new ArrayList<>();
-        myList.add(Stump.class);
-        Optional<Entity> fairyTarget = world.findNearest(getPosition(), myList);
+        myList.add(DudeNotFull.class);
+        myList.add(DudeFull.class);
+        Optional<Entity> zombieTarget = world.findNearest(getPosition(), myList);
 
-        if (fairyTarget.isPresent()) {
-            Point tgtPos = fairyTarget.get().getPosition();
+        if (zombieTarget.isPresent()) {
+            Point tgtPos = zombieTarget.get().getPosition();
 
-            if (moveTo(world, fairyTarget.get(), scheduler)) {
-
-                Entity sapling = new Sapling(WorldModel.getSaplingKey() + "_" + ((Stump)fairyTarget.get()).getId(), tgtPos, imageStore.getImageList(WorldModel.getSaplingKey()), 1.000, 1.000,0);
-                world.addEntity(sapling);
-                ((HasAnimation)sapling).scheduleActions(scheduler, world, imageStore);
+            if ((moveTo(world, zombieTarget.get(), scheduler)) && ((Dude)zombieTarget.get()).getHealth() == 0) {
+                world.setBackgroundCell(zombieTarget.get().getPosition(), new Background("tombstone", imageStore.getImageList("tombstone")));
+                ((Dude) zombieTarget.get()).transformZombie(world, scheduler, imageStore);
             }
         }
 
@@ -35,9 +33,9 @@ public class Fairy extends Person {
         List<Point> path = strat.computePath(
                 this.getPosition(),
                 destPos,
-                (p) -> (!(world.isOccupied(p)) || world.getOccupancyCell(p).getClass() == Plane.class) && world.withinBounds(p),
+                (p) -> (!(world.isOccupied(p))) && world.withinBounds(p),
                 Functions::adjacent,
-                PathingStrategy.CARDINAL_NEIGHBORS
+                PathingStrategy.DIAGONAL_CARDINAL_NEIGHBORS
                 );
 
         if (path.size() == 0) { return this.getPosition();}
@@ -46,9 +44,8 @@ public class Fairy extends Person {
     }
     public boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler) {
         if (Functions.adjacent(getPosition(), target.getPosition())) {
-
-            world.removeEntity(target, scheduler);
-
+            Dude d = (Dude)target;
+            d.decreaseHealth();
             return true;
         } else {
             Point nextPos = nextPosition(world, target.getPosition());
@@ -59,5 +56,6 @@ public class Fairy extends Person {
             return false;
         }
     }
+
 
 }
