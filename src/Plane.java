@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Plane extends Person {
-
+//TODO: Fix target to move across screen. Get target
     public Plane(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
     }
