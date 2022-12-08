@@ -105,7 +105,15 @@ public final class VirtualWorld extends PApplet {
         world.addEntity(zombie);
         ((HasAnimation)zombie).scheduleActions(scheduler, world, imageStore);
 
+        List<Class> myList = new ArrayList<>();
+        myList.add(Tree.class);
+        Optional<Entity> nearestTree = world.findNearest(new Point(pressed.x, pressed.y), myList);
+        Point fighterPos = nearestTree.get().getPosition();
+        world.removeEntity(nearestTree.get(), scheduler);
 
+        Fighter fighter = new Fighter("fighter", fighterPos, imageStore.getImageList("plane"), .5, .2);
+        world.addEntity(fighter);
+        ((HasAnimation)fighter).scheduleActions(scheduler, world, imageStore);
         }
         else
         {
