@@ -11,6 +11,8 @@ public class Bomb extends Person {
     public Bomb(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
     }
+    private int countdown = 2;
+
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         List<Point> pointList = new ArrayList<>();
         int col = this.getPosition().x;
@@ -44,4 +46,5 @@ public class Bomb extends Person {
     public Point nextPosition(WorldModel world, Point destPos) {
         return null;
     }
+
 }
