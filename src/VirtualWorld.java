@@ -111,7 +111,7 @@ public final class VirtualWorld extends PApplet {
         Point fighterPos = nearestTree.get().getPosition();
         world.removeEntity(nearestTree.get(), scheduler);
 
-        Fighter fighter = new Fighter("fighter", fighterPos, imageStore.getImageList("plane"), .5, .2);
+        Fighter fighter = new Fighter("fighter", fighterPos, imageStore.getImageList("fighter"), .5, .2);
         world.addEntity(fighter);
         ((HasAnimation)fighter).scheduleActions(scheduler, world, imageStore);
         }
