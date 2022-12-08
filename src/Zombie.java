@@ -10,7 +10,7 @@ public class Zombie extends Person {
 
     public Zombie(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
-        this.health = 10;
+        this.health = 30;
     }
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         List<Class> myList = new ArrayList<>();
