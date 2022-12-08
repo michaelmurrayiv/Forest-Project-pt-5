@@ -21,7 +21,7 @@ public abstract class Dude extends Person {
         List<Point> path = strat.computePath(
                 this.getPosition(),
                 destPos,
-                (p) -> (!(world.isOccupied(p)) || world.getOccupancyCell(p).getClass() == Stump.class || world.getOccupancyCell(p).getClass() == Plane.class) && world.withinBounds(p),
+                (p) -> (!(world.isOccupied(p)) || world.getOccupancyCell(p).getClass() == Stump.class) && world.withinBounds(p),
                 Functions::adjacent,
                 PathingStrategy.CARDINAL_NEIGHBORS
         );
