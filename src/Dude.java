@@ -52,7 +52,7 @@ public abstract class Dude extends Person {
     }
     public int getHealth(){return health;}
     public boolean transformZombie(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        Entity zombie = new Zombie("zombie", getPosition(), imageStore.getImageList("plane"), 1, .2);
+        Entity zombie = new Zombie("zombie", getPosition(), imageStore.getImageList("zombie"), 1, .2);
         world.removeEntity(this, scheduler);
 
         world.addEntity(zombie);

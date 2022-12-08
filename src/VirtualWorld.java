@@ -101,7 +101,7 @@ public final class VirtualWorld extends PApplet {
                 .filter(p -> Math.random() < .75)
                 .forEach(p -> world.setBackgroundCell(p, new Background("lava", imageStore.getImageList("lava"))));
         
-        Zombie zombie = new Zombie("zombie", new Point(pressed.x, pressed.y), imageStore.getImageList("plane"), 1, .2);
+        Zombie zombie = new Zombie("zombie", new Point(pressed.x, pressed.y), imageStore.getImageList("zombie"), 1, .2);
         world.addEntity(zombie);
         ((HasAnimation)zombie).scheduleActions(scheduler, world, imageStore);
 

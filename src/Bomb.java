@@ -8,13 +8,13 @@ import java.util.stream.Stream;
 
 public class Bomb extends Person {
 //TODO: two blocks up, down, right, left, and one diagonal. Percent chance that a block gets hit. If it hits water, turn to stone, else turn to fire. 
-    private int countdown = 13;
+    private int countdown = 2;
     private List<Point> listOfPoints;
     public Bomb(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
     }
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        countdown --;
+        countdown -= 1;
         if (countdown == 0){
             world.removeEntity(this, scheduler);
             int col = this.getPosition().x;
