@@ -117,9 +117,10 @@ public final class VirtualWorld extends PApplet {
         }
         else
         {
-            Bomb bomb = new Bomb("bomb", new Point(pressed.x, pressed.y), imageStore.getImageList("bomb"),.5, .2);
+            Bomb bomb = new Bomb("bomb", new Point(pressed.x, pressed.y), imageStore.getImageList("bomb"),2.6, .2);
             world.addEntity(bomb);
             ((HasAnimation)bomb).scheduleActions(scheduler, world, imageStore);
+
         }
         timesPressed += 1;
     }
