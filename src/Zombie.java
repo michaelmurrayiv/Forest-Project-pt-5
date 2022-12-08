@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class Zombie extends Person {
+    private int health;
 
     public Zombie(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
+        this.health = 10;
     }
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         List<Class> myList = new ArrayList<>();
@@ -56,6 +58,10 @@ public class Zombie extends Person {
             return false;
         }
     }
+    public void decreaseHealth(){
+        this.health--;
+    }
+    public int getHealth(){return health;}
 
 
 }
