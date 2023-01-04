@@ -1,18 +1,9 @@
-# CPE/CSC 203 Project
+# CSC 203 Forest Project
 
-Hello! This is the project we'll be playing with all quarter.
-You should load this into IntelliJ IDEA using the same procedure
-that you use for labs.
+This project creates a "Viewport" that displays part of a virtual world that is created. In the world, various entities spawn and interact with each other. The early parts of this project required refactoring the given base code so it follows the tenets of object-oriented programming while remaining functional. 
+  
+Later, we added special functionality into the code for when the mouse is clicked inside the Viewport. For every two clicks:
 
-Instructions for the project will be in a Canvas assignment.
-
-_You're encouraged to frequently commit and push your changes
-to GitHub!_
-
-The nature of this project is that you are necessarily introducing
-(temporary) syntax errors as you refactor the code-base. It's possible
-that you will make a mistake and want to go back to before you made
-certain changes. Git will help you do that, but only if you've 
-frequently committed versions of the project.
-
-<div style="color: darkgreen;">All the best!</div>
+  1. The first click spawns a "zombie" entity that hunts down "dude" entities in the world, and also transforms a nearby tree entity into a warrior that attacks the zombies. Most of the background images around the click area are transformed into lava.
+  
+  2. The second click spawns a "bomb" entity that animates and then explodes, changing the background images to a “crater” and removing entities in the vicinity (they got "blown up").
