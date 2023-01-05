@@ -1,6 +1,6 @@
 # CSC 203 Forest Project
 
-This project creates a "Viewport" that displays part of a virtual world that is created. In the world, various entities spawn and interact with each other. The early parts of this project required refactoring the given base code so it follows the tenets of object-oriented programming while remaining functional. 
+This project outputs a "Viewport" that displays part of a virtual world that is created. In the world, various entities spawn and interact with each other. The early parts of this project required refactoring the given base code so it follows the tenets of object-oriented programming while remaining functional. 
   
 Later, we added special functionality into the code for when the mouse is clicked inside the Viewport. For every two clicks:
 
